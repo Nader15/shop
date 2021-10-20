@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shop/ui/Home/home_screen.dart';
+import 'package:shop/ui/Home/main_home.dart';
 import 'package:shop/ui/login/login_cubit/cubit.dart';
 import 'package:shop/ui/login/login_cubit/states.dart';
 import 'package:shop/utils/component/default_button.dart';
@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
       child: BlocConsumer<ShopLoginCubit, LoginStates>(
         listener: (context, state) {
           if (state is LoginSuccessState) {
-            navigateAndClearStack(context, HomeScreen());
+            navigateAndClearStack(context, MainHome());
           }
         },
         builder: (context, state) {

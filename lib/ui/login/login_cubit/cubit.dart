@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shop/models/users_model.dart';
-import 'package:shop/ui/Home/home_screen.dart';
+import 'package:shop/ui/Home/main_home.dart';
 import 'package:shop/ui/login/login_cubit/states.dart';
 import 'package:shop/utils/cahe_helper.dart';
 import 'package:shop/utils/dio_helper.dart';
@@ -48,7 +48,9 @@ class ShopLoginCubit extends Cubit<LoginStates> {
 
       if (!(value.data).toString().contains('error')) {
         userModel = UsersModel.fromJson(value.data);
-        CacheHelper.putData(key: 'userToken', value: userModel.token);
+        CacheHelper.putData(key: 'userToken', value: "Bearer ${userModel.token.split('|')[1]}");
+        CacheHelper.putData(key: 'name', value: userModel.user.name);
+        CacheHelper.putData(key: 'email', value: userModel.user.email);
         Fluttertoast.showToast(msg: "Hello ${userModel.user.name}",backgroundColor: Colors.green);
         print(userModel.token);
         print(userModel.user.toJson());
